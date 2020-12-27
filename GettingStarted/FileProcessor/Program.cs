@@ -23,7 +23,8 @@ namespace FileProcessor
 				WriteLine("(V)erify only");
 				WriteLine("(I)mport into datbase");
 				WriteLine("(P)rint");
-				if (await FeatureManager.IsEnabledAsync("Convert"))
+				// remove the magic string
+				if (await FeatureManager.IsEnabledAsync(nameof(FeatureFlags.Convert)))
 				{
 					WriteLine("(C)onvert");
 				}
@@ -44,7 +45,7 @@ namespace FileProcessor
 						Print();
 						break;
 					case "C":
-						if (await FeatureManager.IsEnabledAsync("Convert"))
+						if (await FeatureManager.IsEnabledAsync(nameof(FeatureFlags.Convert)))
 						{
 							Convert();
 						}

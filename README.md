@@ -45,3 +45,12 @@ Add appsettings.json with following structure:
 
 ```
 
+### flagsenum
+
+Add an enum class that would list all the flags. We do this te eliminate "magic strings" that usually cause an error. 
+
+So I take the "Convert" flag and move it as part of the enum
+
+Then I'l go back to my Program class and reference the enum instead of the string. 
+
+
