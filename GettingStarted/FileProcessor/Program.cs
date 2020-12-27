@@ -61,17 +61,17 @@ namespace FileProcessor
 
 		private static void InitializeFeature()
 		{
-			// Setup configuraiton to come from hard-coded in-momry dictionary
-			var flags = new Dictionary<string, string>
-			{
-				{ "FeatureManagement:Convert", "false"}
-			};
+		
 			IConfigurationBuilder builder = new ConfigurationBuilder();
-			builder.AddInMemoryCollection(flags);
+			//replace in-memory flag with json file settings
+
+			//builder.AddInMemoryCollection(flags);
+			builder.AddJsonFile("appsettings.json");
 			IConfigurationRoot configuration = builder.Build();
 
 			//Setup servies (including Feature Management)
 			IServiceCollection services = new ServiceCollection();
+			services.AddFeatureManagement(configuration);
 			IServiceProvider serviceProvider = services.BuildServiceProvider();
 			FeatureManager = serviceProvider.GetRequiredService<IFeatureManager>();
 		}
